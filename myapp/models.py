@@ -40,9 +40,16 @@ class MyUser(models.Model):
 class Student(models.Model):
 	Student_Id = models.ForeignKey(MyUser ,on_delete=models.CASCADE, primary_key = True)
 
+
 #Faculty
 class Faculty(models.Model):
 	Faculty_Id = models.ForeignKey(MyUser,on_delete=models.CASCADE, primary_key = True)
+	def serialize(self):
+		return {
+			'faculty_Id' : self.Faculty_Id.serialize(),
+			# This is an example how to deal with Many2Many relations
+			#	'many2many'  : self.serialize_many2many
+			}
 
 #Admin
 class Admin(models.Model):
@@ -65,7 +72,7 @@ class Course(models.Model):
 		"""Return object data in easily serializeable format"""
 		return {
 			'course_id' : self.course_id,
-			'faculty' : self.faculty,
+			'faculty' : self.faculty.serialize(),
 			'course_name' : self.course_name,
 			'prereq' : self.prereq,
 			'syllabus' : self.syllabus,

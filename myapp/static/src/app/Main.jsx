@@ -9,6 +9,7 @@ import AppBar from 'material-ui/lib/app-bar';
 import LeftNav from 'material-ui/lib/left-nav';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import Avatar from 'material-ui/lib/avatar';
+import $ from 'jquery';
 import {
     blue300,
     indigo900,
@@ -48,23 +49,25 @@ class Main extends React.Component {
 
         };
     }
-    loadCommentsFromServer() {
+    loadCourses() {
         $.ajax({
-            url: this.props.url,
+            url: '/allcourses',
             dataType: 'json',
             cache: false,
+            type: 'GET',
             success: function(data) {
                 console.log(data);
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
+                console.log("error");
+                // console.error(this.props.url, status, err.toString());
             }.bind(this),
         });
     }
     componentDidMount() {
-      this.loadCommentsFromServer();
-    //   setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+        this.loadCourses();
+          setInterval(this.loadCourses, this.props.pollInterval);
     }
     _toggleNav(e){
         e.preventDefault();

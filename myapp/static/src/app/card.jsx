@@ -50,7 +50,7 @@ CourseCard.propTypes = {
 
 };
 CourseCard.defaultProps = {
-
+    data : [],
 };
 
 export default CourseCard;

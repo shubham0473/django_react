@@ -3,7 +3,7 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 import datetime
 from django.shortcuts import render, redirect
-from django.http import HttpResponse , HttpResponseRedirect
+from django.http import HttpResponse , HttpResponseRedirect, JsonResponse
 import json
 # import simplejson
 from django.core.context_processors import csrf
@@ -293,7 +293,7 @@ def approve(request):
 # API to get list of all courses
 def allcourses(request):
 	j = Course.objects.all()
-	return HttpResponse([i.serialize() for i in j])
+	return JsonResponse([i.serialize() for i in j], safe=False)
 
 
 # API to get list of all courses of a faculty
