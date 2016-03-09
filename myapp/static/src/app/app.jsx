@@ -9,6 +9,13 @@ import Main from './Main'; // Our custom react component
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
+const dummy = [
+    {'course_name' : 'dbms'},
+    {'course_name' : 'networks'},
+    {'course_name' : 'os'},
+    {'course_name' : 'ir'},
+];
+
 // Render the main app react component into the app div.
 // For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-ReactDOM.render(<Main url="/allcourses"/>, document.getElementById('app'));
+ReactDOM.render(<Main data={dummy} url="/allcourses"/>, document.getElementById('app'));

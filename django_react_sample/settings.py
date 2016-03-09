@@ -93,13 +93,17 @@ WSGI_APPLICATION = 'django_react_sample.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'13CS30009',
+        'USER' : '13CS30009',
+        'PASSWORD' : 'cse12',
+        'HOST' : '10.5.18.68',
+
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -113,6 +117,11 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 
 # Static files (CSS, JavaScript, Images)

@@ -26,6 +26,7 @@ import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 import Divider from 'material-ui/lib/divider';
 import CourseCard from './card'
+// import CardExampleWithoutAvatar from './card_test'
 
 // import LeftBarComponent from './left_nav';
 // import NavbarComponent from './main_nav';
@@ -43,27 +44,28 @@ class Main extends React.Component {
         super(props, context);
         // this.handleRequestClose = this.handleRequestClose.bind(this);
         this._toggleNav = this._toggleNav.bind(this);
-    },
-    getInitialState: function() {
-        return {data: []};
-    },
-    loadCommentsFromServer: function() {
+        this.state = {
+
+        };
+    }
+    loadCommentsFromServer() {
         $.ajax({
             url: this.props.url,
             dataType: 'json',
             cache: false,
             success: function(data) {
+                console.log(data);
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
-            }.bind(this)
+            }.bind(this),
         });
-    },
-    componentDidMount: function() {
+    }
+    componentDidMount() {
       this.loadCommentsFromServer();
     //   setInterval(this.loadCommentsFromServer, this.props.pollInterval);
-    },
+    }
     _toggleNav(e){
         e.preventDefault();
         window.console.log("Click!");
@@ -107,5 +109,14 @@ class Main extends React.Component {
     }
 
 }
+
+
+Main.propTypes = {
+
+};
+Main.defaultProps = {
+
+};
+
 
 export default Main;
